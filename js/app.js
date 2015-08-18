@@ -1,4 +1,4 @@
-var app = angular.module("reddit", ['ngAnimate','angularMoment']);
+var app = angular.module("reddit", ['ngAnimate','angularMoment','ngRoute']);
 
 app.controller("Posts",function($scope){
   $scope.message = {
