@@ -1,0 +1,23 @@
+.addComments {
+  float: right;
+  width: 78%;
+  padding: 0px;
+  label {
+    display: inline-block;
+  }
+  input {
+    display: inline-block;
+    border-radius: 5px;
+    width: 200px;
+    margin-right: 30px;
+  }
+}
+
+.comments {
+  float: right;
+  width: 78%;
+  padding: 0px;
+  span {
+    font-weight: bold;
+  }
+}

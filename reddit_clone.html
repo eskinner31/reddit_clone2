@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app = "reddit">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="redditstyle.css">
+    <meta charset="utf-8">
+    <title>Reddit Clone</title>
+  </head>
+  <body ng-controller= "Posts">
+      <header>
+        <nav>
+          <ul>
+            <li><h3>Reddit Clone</h3></li>
+            <li ng-click= "showHide()"><i class="fa fa-plus"></i>Submit Post</li>
+            <li><input ng-model= "searchText" type="text" name="name" value="" placeholder="Search"></li>
+            <li>
+              <select ng-model= "selected"  ng-init= "selected='-votes'">
+                <option value="-votes">Sort By Votes</option>
+                <option value="dates">Sort By Dates</option>
+                <option value="title">Sort By Title</option>
+              </select>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <section>
+        <form ng-submit= "addPost()" ng-show="showValue">
+          <label for="title">Title</label>
+          <input required ng-model= "title" type="text" name="name" value="" id="title" placeholder="Post Title">
+          <label for="author">Author</label>
+          <input required ng-model= "author" type="text" name="name" value="" id="author" placeholder="Author">
+          <label for="image">Image URL</label>
+          <input required ng-model= "imageURL" type="text" name="name" value="" id="image" placeholder="Image URL">
+          <label for="description">Description</label>
+          <input required ng-model= "description" type="text" name="name" value="" id="description" placeholder="Description">
+          <button type="submit">Submit Post</button>
+        </form>
+      </section>
+      <main>
+        <!-- consider using div's to correct for the floats if clear fix doesn't work -->
+        <article ng-show="true" class="clearfix fade" ng-repeat= "post in posts | filter: searchText | orderBy: selected">
+          <div class="clearfix a">
+            <img ng-src="{{post.imageURL}}" alt="image" />
+          </div>
+          <div class="clearfix b">
+            <h3>{{post.title}} | <i class="fa fa-arrow-up" ng-click="increment()"></i><i ng-click="decrement()" class="fa fa-arrow-down"></i><span ng-class= "{base: post.votes == 0, negative: post.votes < 0, positive: post.votes > 0}">{{post.votes}}</span></h3>
+            <h5>By {{post.author}}</h5>
+            <p>{{post.description}}</p>
+            <div class="clearfix c">
+                <p><span><i class="fa fa-calendar"></i><span am-time-ago="message.time"></span></span> | <span ng-click= "showComments()"><i class="fa fa-comment"></i>{{post.comments.length}}  <ng-pluralize count="post.comments.length"
+                when="{ 1 : 'Comment',
+                       'other': 'Comments'}">
+  </ng-pluralize></span> | <span ng-click= "addComments()"><i class="fa fa-plus-circle"></i>Add Comment</span></p>
+            </div>
+          </div>
+          <div ng-repeat= "comment in post.comments" class="comments" ng-show= post.showCom>
+            <p><span>{{comment.commenter}}</span>: {{comment.comment}}</p>
+          </div>
+          <div class="addComments" ng-show= post.addCom>
+            <form ng-submit= "postComments()">
+              <label for="commenter">Author</label>
+              <input ng-model= "commenter" type="text" name="author" value="" id="commenter">
+              <label for="comment">Comment</label>
+              <input ng-model= "comment" type="text" name="comment" value="" id="comment">
+              <button type="submit">Post Comment</button>
+            </form>
+          </div>
+          <!-- Insert the extra tracking, comments, upvotes, downvotes etc. -->
+        </article>
+      </main>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.js"></script>
+      <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js"></script>
+      <script src="node_modules/moment/moment.js"></script>
+      <script src="node_modules/angular-moment/angular-moment.js"></script>
+      <script src="reddit_app.js"></script>
+  </body>
+</html>

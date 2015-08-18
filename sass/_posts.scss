@@ -1,0 +1,70 @@
+main {
+  margin: 0 auto;
+  width: 80%;
+  padding: 0px;
+  border-radius: 5px;
+}
+
+article {
+  margin-top: 30px;
+  width: 100%;
+  background-color: $bg-color;
+  padding: 20px;
+  h3 {
+    float: left;
+    margin-top: 0px;
+    font-weight: bold;
+    clear: both
+  }
+  h5 {
+    float: right;
+    clear: both;
+    margin: 5px;
+  }
+  img {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+  }
+  p {
+   float: left;
+   margin: 5px;
+   clear: both;
+   color: $post-text;
+  }
+}
+
+.a {
+  height: 210px;
+  width: 210px;
+  float: left;
+  display: inline-block;
+}
+
+.b {
+  padding: 0px;
+  height: 220px;
+  float: right;
+  display: inline-block;
+  width: 78%;
+}
+.c {
+  float: left;
+  display: block;
+  clear: both;
+  vertical-align: bottom;
+  width: 78%;
+  padding: 0px;
+}
+
+
+
+.base {
+  color: black;
+}
+.positive{
+  color: green;
+}
+.negative{
+  color: red;
+}
